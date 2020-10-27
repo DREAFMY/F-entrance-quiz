@@ -1,2 +1,30 @@
 .App {
+  .container {
+    width: 1000px;
+    background-color: #f7f7f7;
+    margin: 0 auto;
+    padding: 20px;
+    .title {
+      padding: 10px 0;
+      .myButton {
+        background-color: red;
+        padding: 5px 10px;
+        float: right;
+        color: white;
+      }
+    }
+    .team {
+      margin-top: 15px;
+      .teamTitle {
+        height: 20px;
+        background-color: #393e46;
+        width: 100%;
+        color: white;
+      }
+    }
+    .student {
+      padding: 5px;
+      background-color: #eeeeee;
+    }
+  }
 }
