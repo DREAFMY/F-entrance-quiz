@@ -15,6 +15,12 @@ class App extends Component {
 
   componentDidMount() {
     this.getSudents();
+    console.log(localStorage.getItem('team'));
+    if (localStorage.getItem('team')) {
+      this.setState({
+        teamList: JSON.parse(localStorage.getItem('team')),
+      });
+    }
   }
 
   getSudents = () => {
@@ -30,6 +36,7 @@ class App extends Component {
       this.setState({
         teamList: res.data,
       });
+      localStorage.setItem('team', JSON.stringify(res.data));
     });
   };
 
