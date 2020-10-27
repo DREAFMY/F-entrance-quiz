@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.scss';
 
 class App extends Component {
@@ -8,6 +9,14 @@ class App extends Component {
       studentList: [],
       teamList: [],
     };
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:8080/student').then((res) => {
+      this.setState({
+        studentList: res.data,
+      });
+    });
   }
 
   // splitStudent = () => {
@@ -48,24 +57,22 @@ class App extends Component {
             <div className="title">
               <h2>学员列表</h2>
             </div>
-            <div>
+            <div className="studentCon">
               {this.state.studentList.map((student, index) => {
                 return (
-                  <span key={index} className="student">
+                  <div key={index} className="student">
                     {student.id} {student.name}
-                  </span>
+                  </div>
                 );
               })}
-              <span>
-                <button
-                  type="button"
-                  // onClick={() => {
-                  //   this.addStudent;
-                  // }}
-                >
-                  +添加学员
-                </button>
-              </span>
+              <button
+                type="button"
+                // onClick={() => {
+                //   this.addStudent;
+                // }}
+              >
+                +添加学员
+              </button>
             </div>
           </div>
         </div>

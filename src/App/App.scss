@@ -25,6 +25,12 @@
     .student {
       padding: 5px;
       background-color: #eeeeee;
+      margin: 6px;
+    }
+
+    .studentCon {
+      display: flex;
+      flex-wrap: wrap;
     }
   }
 }
