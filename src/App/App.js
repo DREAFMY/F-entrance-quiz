@@ -7,7 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       studentList: [],
-      teamList: [],
+      teamList: {},
       isModleShow: false,
       name: '',
     };
@@ -25,9 +25,14 @@ class App extends Component {
     });
   };
 
-  // splitStudent = () => {
-  //   console.log('huafenxueyuan');
-  // };
+  splitStudent = () => {
+    axios.get('http://localhost:8080/team').then((res) => {
+      this.setState({
+        teamList: res.data,
+      });
+    });
+  };
+
   addStudent = () => {
     this.setState({
       isModleShow: true,
@@ -36,7 +41,7 @@ class App extends Component {
 
   upAdd = (event) => {
     event.preventDefault();
-    axios.post(`http://localhost:8080/student/${  this.state.name}`).then(() => {
+    axios.post(`http://localhost:8080/student/${this.state.name}`).then(() => {
       alert('添加学员成功');
       this.getSudents();
       this.setState({
@@ -58,22 +63,25 @@ class App extends Component {
         <div className="container">
           <div className="teamList">
             <div className="title">
-              <button
-                type="button"
-                className="myButton"
-                // onClick={() => {
-                //   this.splitStudent;
-                // }}
-              >
+              <button type="button" className="myButton" onClick={this.splitStudent}>
                 分组学员
               </button>
               <h2>分组列表</h2>
             </div>
             <div>
-              {this.state.teamList.map((team, index) => {
+              {Object.entries(this.state.teamList).map(([key, value]) => {
                 return (
-                  <div key={index} className="team">
-                    <div className="teamTitle">{index + 1} 组</div>
+                  <div>
+                    <div className="teamTitle">{`${key  }组`}</div>
+                    <div className="studentCon" key={key}>
+                      {value.map((item) => {
+                        return (
+                          <div key={item.id} className="student">
+                            {item.id}. {item.name}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 );
               })}
@@ -87,7 +95,7 @@ class App extends Component {
               {this.state.studentList.map((student, index) => {
                 return (
                   <div key={index} className="student">
-                    {student.id} {student.name}
+                    {student.id}. {student.name}
                   </div>
                 );
               })}

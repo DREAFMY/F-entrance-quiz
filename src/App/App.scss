@@ -32,6 +32,13 @@
       display: flex;
       flex-wrap: wrap;
     }
+
+    .teamTitle {
+      background-color: gray;
+      color: white;
+      text-align: center;
+      padding: 5px;
+    }
   }
   .addModle {
     width: 400px;
