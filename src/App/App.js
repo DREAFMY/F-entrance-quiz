@@ -71,9 +71,9 @@ class App extends Component {
             <div>
               {Object.entries(this.state.teamList).map(([key, value]) => {
                 return (
-                  <div>
-                    <div className="teamTitle">{`${key  }组`}</div>
-                    <div className="studentCon" key={key}>
+                  <div className="teamA">
+                    <div className="teamTitle">{`${key}组`}</div>
+                    <div className="studentTeam" key={key}>
                       {value.map((item) => {
                         return (
                           <div key={item.id} className="student">
